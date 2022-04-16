@@ -6,9 +6,10 @@ import Inference
 bot = commands.Bot(command_prefix="~")
 
 @bot.command()
-async def generate_quote(ctx, *, arg):
-    quote = Inference.generate_quote(arg)
+async def generate_quote(ctx):
+    quote = Inference.generate_quote()
     await ctx.send(quote)
+    await ctx.message.delete()
 
 @bot.command(name="plzhelp")
 async def help_command(ctx):
