@@ -21,6 +21,3 @@ def generate_quote():
             generated_text = generated_text[0:position+1]
             break
     return generated_text
-
-text = generate_quote()
-print(text)
