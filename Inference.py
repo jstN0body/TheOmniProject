@@ -12,10 +12,10 @@ kwargs = {
     "max_length" : 25
 }
 
-def generate_quote():
-    generated_text = generator("", kwargs=kwargs)[0]["generated_text"]
+def generate_quote(prompt):
+    generated_text = generator(prompt, kwargs=kwargs)[0]["generated_text"]
     for i in range(0, len(generated_text)):
-        position = len(generated_text) - i -1
+        position = len(generated_text) - i - 1
         char = generated_text[position]
         if char == "." or char == "?" or char == "!":
             generated_text = generated_text[0:position+1]

@@ -1,4 +1,5 @@
 from discord.ext import commands
+from discord import Embed, Colour
 
 import Constants
 import Inference
@@ -6,15 +7,23 @@ import Inference
 bot = commands.Bot(command_prefix="~")
 
 @bot.command()
-async def generate_quote(ctx):
-    quote = Inference.generate_quote()
+async def generate_quote(ctx, *, arg=None):
+    quote = Inference.generate_quote(arg if not arg is None else "")
+
     await ctx.send(quote)
     await ctx.message.delete()
 
 @bot.command(name="plzhelp")
 async def help_command(ctx):
-    await ctx.send("Use ~generate_quote <prompt> to generate an Omni-like quote\n"
-                   "Use ~scrape_messages to yoink messages from Omni")
+    help_embed = Embed(
+        title="Omni Project Help",
+        description="~generate_quote : generates an Omni-like quote."
+                    "\n~generate_quote <prompt> : generates an Omni-like quote from a given prompt.",
+        type="rich",
+        colour=Colour.dark_purple()
+    )
+    await ctx.send(embed=help_embed)
+    await ctx.message.delete()
 
 @bot.command()
 async def scrape_messages(ctx):
