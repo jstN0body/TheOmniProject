@@ -8,8 +8,8 @@ generator = TextGenerationPipeline(task="text-generation", tokenizer=tokenizer, 
 
 kwargs = {
     "repetition_penalty" : 1.15,
-    "length_penalty" : 0.35,
-    "max_length" : 25
+    "length_penalty" : 0.5,
+    "max_length" : 25,
 }
 
 def generate_quote(prompt):
